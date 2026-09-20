@@ -1,0 +1,9 @@
+{
+  "event_id": "092106-002-sample-001",
+  "event_type": "RIGHT_CLAIMED",
+  "aggregate_type": "artwork_right",
+  "aggregate_id": "gallery_merch_rights-001",
+  "occurred_at": "2026-09-20T15:00:00+08:00",
+  "version": 1,
+  "summary": "登记美术馆文创授权台的首条领域记录"
+}
