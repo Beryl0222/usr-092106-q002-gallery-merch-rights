@@ -1,56 +1,694 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://museum.example/contracts/gallery-merch-rights/domain.schema.json",
   "title": "美术馆文创授权台领域事件",
+  "description": "基础事件信封对所有事件一致；业务载荷按 event_type 条件化定义。事件一经接收即不可原地改写，任何更正都以同聚合的后继版本事件表达。",
   "type": "object",
-  "required": [
-    "event_id",
-    "event_type",
-    "aggregate_type",
-    "aggregate_id",
-    "occurred_at",
-    "version",
-    "summary"
-  ],
+  "required": ["event_id", "event_type", "aggregate_type", "aggregate_id", "occurred_at", "version", "summary"],
   "properties": {
-    "event_id": {
-      "type": "string",
-      "minLength": 1
-    },
+    "event_id": { "type": "string", "minLength": 1, "description": "事件全局唯一标识" },
     "event_type": {
       "type": "string",
       "enum": [
+        "EXHIBITION_SCHEDULED",
+        "EXHIBITION_RESCHEDULED",
+        "ARTWORK_ACQUIRED",
         "RIGHT_CLAIMED",
+        "RIGHT_CLAIM_VERIFIED",
+        "RIGHT_CLAIM_REJECTED",
+        "RIGHT_DISPUTE_OPENED",
+        "RIGHT_DISPUTE_RESOLVED",
+        "LICENSE_GRANTED",
+        "LICENSE_AMENDED",
+        "LICENSE_WITHDRAWN",
         "DESIGN_SUBMITTED",
+        "DESIGN_APPROVED",
+        "DESIGN_REJECTED",
+        "SAMPLE_SUBMITTED",
+        "SAMPLE_APPROVED",
+        "SAMPLE_REJECTED",
+        "MATERIAL_SUBSTITUTED",
+        "SKU_REGISTERED",
         "CLEARANCE_APPROVED",
+        "CLEARANCE_REJECTED",
+        "RESTOCK_COMMITTED",
         "BATCH_RELEASED",
-        "RIGHT_WITHDRAWN"
+        "SALE_RECORDED",
+        "ROYALTY_SETTLED",
+        "SKU_DELISTED",
+        "SKU_RELISTED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "exhibition",
         "artwork_right",
+        "license_grant",
         "design_proposal",
+        "sample_round",
         "product_sku",
+        "production_batch",
         "royalty_statement"
       ]
     },
-    "aggregate_id": {
-      "type": "string",
-      "minLength": 1
-    },
-    "occurred_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "version": {
-      "type": "integer",
-      "minimum": 1
-    },
-    "summary": {
-      "type": "string",
-      "minLength": 1
-    }
+    "aggregate_id": { "type": "string", "minLength": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "version": { "type": "integer", "minimum": 1, "description": "该聚合内的单调递增版本号，从 1 开始" },
+    "summary": { "type": "string", "minLength": 1 },
+    "causation_id": { "type": "string", "description": "触发本事件的命令或上游事件 id，例如撤权导致下架时指向 LICENSE_WITHDRAWN" },
+    "payload": { "type": "object", "description": "业务载荷，结构由 event_type 决定，见 allOf 条件约束" }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": { "properties": { "event_type": { "const": "EXHIBITION_SCHEDULED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibition" },
+          "payload": {
+            "type": "object",
+            "required": ["exhibition_id", "title", "start_date", "end_date"],
+            "properties": {
+              "exhibition_id": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "hall": { "type": "string" },
+              "start_date": { "type": "string", "format": "date" },
+              "end_date": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "EXHIBITION_RESCHEDULED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibition" },
+          "payload": {
+            "type": "object",
+            "required": ["previous", "current", "reason"],
+            "properties": {
+              "previous": { "$ref": "#/$defs/dateWindow" },
+              "current": { "$ref": "#/$defs/dateWindow" },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "ARTWORK_ACQUIRED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "description": "作品入藏只登记物权与著作权线索，不意味着美术馆取得著作权。",
+            "required": ["artwork_id", "title", "acquisition_date", "copyright_status"],
+            "properties": {
+              "artwork_id": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "artist_display": { "type": "string" },
+              "acquisition_date": { "type": "string", "format": "date" },
+              "acquisition_mode": { "type": "string", "enum": ["PURCHASE", "DONATION", "COMMISSION", "LONG_TERM_LOAN", "COLLECTION"] },
+              "copyright_status": {
+                "type": "string",
+                "enum": ["RETAINED_BY_ARTIST", "TRANSFERRED_WITH_DEED", "ESTATE_HELD", "JOINTLY_OWNED", "UNVERIFIED"],
+                "description": "入藏时的著作权状态断言；除 TRANSFERRED_WITH_DEED 且有书面凭证外，一律不得视为馆方取得著作权"
+              },
+              "copyright_deed_ref": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RIGHT_CLAIMED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "description": "登记一个权属候选；同一作品可有多个候选并行存在与核验。",
+            "required": ["artwork_id", "candidate_id", "claimant", "relationship", "claimed_rights", "evidence_refs"],
+            "properties": {
+              "artwork_id": { "type": "string", "minLength": 1 },
+              "candidate_id": { "type": "string", "minLength": 1 },
+              "claimant": { "type": "string", "minLength": 1 },
+              "relationship": { "type": "string", "enum": ["ARTIST", "JOINT_ARTIST", "HEIR", "ESTATE", "ASSIGNEE", "PUBLISHER"] },
+              "claimed_rights": { "type": "array", "items": { "$ref": "#/$defs/copyrightRight" }, "minItems": 1 },
+              "share_pct": { "type": "number", "minimum": 0, "maximum": 100, "description": "合作作品候选的主张份额" },
+              "evidence_refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RIGHT_CLAIM_VERIFIED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "required": ["candidate_id", "verifier", "verified_rights", "basis"],
+            "properties": {
+              "candidate_id": { "type": "string", "minLength": 1 },
+              "verifier": { "type": "string", "minLength": 1 },
+              "verified_rights": { "type": "array", "items": { "$ref": "#/$defs/copyrightRight" }, "minItems": 1 },
+              "share_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+              "basis": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RIGHT_CLAIM_REJECTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "required": ["candidate_id", "verifier", "reason"],
+            "properties": {
+              "candidate_id": { "type": "string", "minLength": 1 },
+              "verifier": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RIGHT_DISPUTE_OPENED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "description": "争议不阻塞其他候选的并行核验，但争议未决期间不得放行衍生品。",
+            "required": ["artwork_id", "dispute_id", "subject", "opened_by"],
+            "properties": {
+              "artwork_id": { "type": "string", "minLength": 1 },
+              "dispute_id": { "type": "string", "minLength": 1 },
+              "candidate_ids": { "type": "array", "items": { "type": "string" } },
+              "subject": { "type": "string", "minLength": 1 },
+              "opened_by": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RIGHT_DISPUTE_RESOLVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "artwork_right" },
+          "payload": {
+            "type": "object",
+            "required": ["dispute_id", "resolution", "resolved_by"],
+            "properties": {
+              "dispute_id": { "type": "string", "minLength": 1 },
+              "resolution": { "type": "string", "enum": ["CONFIRMED_CLAIMANT", "SHARED", "UNENCUMBERED", "COURT_PENDING"] },
+              "winner_candidate_id": { "type": "string" },
+              "shares": { "type": "array", "items": { "type": "object", "required": ["candidate_id", "share_pct"], "properties": { "candidate_id": { "type": "string" }, "share_pct": { "type": "number" } } } },
+              "resolved_by": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LICENSE_GRANTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "license_grant" },
+          "payload": {
+            "type": "object",
+            "description": "一份授权覆盖一件或多件作品；使用类别、权能、地域、渠道、期限、配额在 payload 中明示。",
+            "required": ["license_id", "artwork_ids", "licensor_candidate_id", "rights", "use_class", "territories", "channels", "term", "term_basis", "royalty"],
+            "properties": {
+              "license_id": { "type": "string", "minLength": 1 },
+              "exhibition_id": { "type": "string", "description": "term_basis=EXHIBITION_WINDOW 时联动的特展；展期改期后实际期限为 term 与最新展期窗口的交集" },
+              "artwork_ids": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "licensor_candidate_id": { "type": "string", "minLength": 1 },
+              "rights": {
+                "type": "object",
+                "required": ["reproduction", "adaptation"],
+                "properties": {
+                  "reproduction": { "type": "boolean" },
+                  "adaptation": { "type": "string", "enum": ["NONE", "STYLIZED_REFERENCE", "MODIFY", "DERIVATIVE_FULL"] }
+                }
+              },
+              "use_class": { "$ref": "#/$defs/useClass" },
+              "territories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" }, "minItems": 1 },
+              "term": { "$ref": "#/$defs/dateWindow" },
+              "term_basis": { "type": "string", "enum": ["EXHIBITION_WINDOW", "EXPLICIT"], "description": "EXHIBITION_WINDOW 时实际期限为 term 与展期窗口的交集，展期改期自动收窄" },
+              "max_units": { "type": ["integer", "null"], "minimum": 1, "description": "授权生产配额；null 表示不限量" },
+              "sell_through_days": { "type": "integer", "minimum": 0, "description": "授权终止后允许售罄既有库存的天数；缺省为 0" },
+              "royalty": {
+                "type": "object",
+                "required": ["rate", "basis"],
+                "properties": {
+                  "rate": { "type": "number", "minimum": 0 },
+                  "basis": { "type": "string", "enum": ["PERCENT_OF_REVENUE", "PER_UNIT", "LUMP_SUM"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LICENSE_AMENDED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "license_grant" },
+          "payload": {
+            "type": "object",
+            "description": "授权修订（收窄/放宽/更正）。收窄对未来生产与销售立即生效；已放行批次保留其权利快照。",
+            "required": ["change_type", "effective_at", "changes"],
+            "properties": {
+              "change_type": { "type": "string", "enum": ["NARROW", "WIDEN", "CORRECT"] },
+              "effective_at": { "type": "string", "format": "date-time" },
+              "changes": {
+                "type": "object",
+                "properties": {
+                  "remove_channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" } },
+                  "add_channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" } },
+                  "remove_territories": { "type": "array", "items": { "type": "string" } },
+                  "add_territories": { "type": "array", "items": { "type": "string" } },
+                  "rights": { "type": "object", "properties": { "reproduction": { "type": "boolean" }, "adaptation": { "type": "string", "enum": ["NONE", "STYLIZED_REFERENCE", "MODIFY", "DERIVATIVE_FULL"] } } },
+                  "term": { "$ref": "#/$defs/dateWindow" },
+                  "max_units": { "type": ["integer", "null"], "minimum": 1 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LICENSE_WITHDRAWN" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "license_grant" },
+          "payload": {
+            "type": "object",
+            "required": ["reason", "effective_at"],
+            "properties": {
+              "reason": { "type": "string", "minLength": 1 },
+              "effective_at": { "type": "string", "format": "date-time" },
+              "sell_through_until": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "DESIGN_SUBMITTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "design_proposal" },
+          "payload": {
+            "type": "object",
+            "required": ["design_id", "artwork_ids", "use_class", "designer", "adaptation_level", "spec_ref"],
+            "properties": {
+              "design_id": { "type": "string", "minLength": 1 },
+              "artwork_ids": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "use_class": { "$ref": "#/$defs/useClass" },
+              "designer": { "type": "string", "minLength": 1 },
+              "adaptation_level": { "type": "string", "enum": ["NONE", "STYLIZED_REFERENCE", "MODIFY", "DERIVATIVE_FULL"] },
+              "spec_ref": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "DESIGN_APPROVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "design_proposal" },
+          "payload": {
+            "type": "object",
+            "required": ["reviewer", "approved_at"],
+            "properties": {
+              "reviewer": { "type": "string", "minLength": 1 },
+              "approved_at": { "type": "string", "format": "date-time" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "DESIGN_REJECTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "design_proposal" },
+          "payload": {
+            "type": "object",
+            "required": ["reviewer", "reason"],
+            "properties": {
+              "reviewer": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SAMPLE_SUBMITTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "sample_round" },
+          "payload": {
+            "type": "object",
+            "required": ["sample_id", "design_id", "round_no", "supplier", "material_spec_ref", "submitted_at"],
+            "properties": {
+              "sample_id": { "type": "string", "minLength": 1 },
+              "design_id": { "type": "string", "minLength": 1 },
+              "round_no": { "type": "integer", "minimum": 1 },
+              "supplier": { "type": "string", "minLength": 1 },
+              "material_spec_ref": { "type": "string", "minLength": 1 },
+              "submitted_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SAMPLE_APPROVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "sample_round" },
+          "payload": {
+            "type": "object",
+            "required": ["reviewer", "approved_at"],
+            "properties": {
+              "reviewer": { "type": "string", "minLength": 1 },
+              "approved_at": { "type": "string", "format": "date-time" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SAMPLE_REJECTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "sample_round" },
+          "payload": {
+            "type": "object",
+            "required": ["reviewer", "reason"],
+            "properties": {
+              "reviewer": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MATERIAL_SUBSTITUTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "description": "供应商换料：旧料批准失效，须重新打样通过后才能继续生产。",
+            "required": ["sku", "previous_material_ref", "new_material_ref", "supplier", "changed_at"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "previous_material_ref": { "type": "string", "minLength": 1 },
+              "new_material_ref": { "type": "string", "minLength": 1 },
+              "supplier": { "type": "string", "minLength": 1 },
+              "changed_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SKU_REGISTERED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "required": ["sku", "design_id", "artwork_ids", "use_class", "channels", "unit_price", "registered_at"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "design_id": { "type": "string", "minLength": 1 },
+              "artwork_ids": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "use_class": { "$ref": "#/$defs/useClass" },
+              "channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" }, "minItems": 1 },
+              "unit_price": { "type": "number", "minimum": 0 },
+              "registered_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CLEARANCE_APPROVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "description": "开售门禁放行决定。rights_snapshot 冻结当时每件作品命中的授权版本，作为日后反查与已售批次结算依据。",
+            "required": ["sku", "approver", "approved_at", "channels", "rights_snapshot"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "approver": { "type": "string", "minLength": 1 },
+              "approved_at": { "type": "string", "format": "date-time" },
+              "channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" }, "minItems": 1 },
+              "rights_snapshot": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["artwork_id", "license_id", "license_version", "licensor_candidate_id"],
+                  "properties": {
+                    "artwork_id": { "type": "string" },
+                    "license_id": { "type": "string" },
+                    "license_version": { "type": "integer", "minimum": 1 },
+                    "licensor_candidate_id": { "type": "string" }
+                  }
+                }
+              },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CLEARANCE_REJECTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "required": ["sku", "reviewer", "rejected_at", "reasons"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "reviewer": { "type": "string", "minLength": 1 },
+              "rejected_at": { "type": "string", "format": "date-time" },
+              "reasons": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RESTOCK_COMMITTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "description": "限量补货承诺：补货量受当前授权交集余量约束。",
+            "required": ["sku", "quantity", "batch_id", "committed_at"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "quantity": { "type": "integer", "minimum": 1 },
+              "batch_id": { "type": "string", "minLength": 1 },
+              "committed_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "BATCH_RELEASED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "production_batch" },
+          "payload": {
+            "type": "object",
+            "description": "生产批次排产。rights_snapshot 冻结本批次所依据的授权版本与分成条件；授权日后收窄或撤回不影响其作为已售商品的结算依据。",
+            "required": ["batch_id", "sku", "quantity", "material_ref", "released_at", "rights_snapshot", "royalty_terms"],
+            "properties": {
+              "batch_id": { "type": "string", "minLength": 1 },
+              "sku": { "type": "string", "minLength": 1 },
+              "quantity": { "type": "integer", "minimum": 1 },
+              "material_ref": { "type": "string", "minLength": 1 },
+              "released_at": { "type": "string", "format": "date-time" },
+              "rights_snapshot": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["artwork_id", "license_id", "license_version", "licensor_candidate_id"],
+                  "properties": {
+                    "artwork_id": { "type": "string" },
+                    "license_id": { "type": "string" },
+                    "license_version": { "type": "integer", "minimum": 1 },
+                    "licensor_candidate_id": { "type": "string" }
+                  }
+                }
+              },
+              "royalty_terms": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["license_id", "rate", "basis"],
+                  "properties": {
+                    "license_id": { "type": "string" },
+                    "rate": { "type": "number", "minimum": 0 },
+                    "basis": { "type": "string", "enum": ["PERCENT_OF_REVENUE", "PER_UNIT", "LUMP_SUM"] }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SALE_RECORDED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "royalty_statement" },
+          "payload": {
+            "type": "object",
+            "required": ["statement_id", "sku", "batch_id", "channel", "quantity", "unit_price", "sold_at", "royalty_due"],
+            "properties": {
+              "statement_id": { "type": "string", "minLength": 1 },
+              "sku": { "type": "string", "minLength": 1 },
+              "batch_id": { "type": "string", "minLength": 1 },
+              "channel": { "$ref": "#/$defs/salesChannel" },
+              "quantity": { "type": "integer", "minimum": 1 },
+              "unit_price": { "type": "number", "minimum": 0 },
+              "sold_at": { "type": "string", "format": "date-time" },
+              "royalty_due": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["license_id", "amount"],
+                  "properties": {
+                    "license_id": { "type": "string" },
+                    "candidate_id": { "type": "string" },
+                    "amount": { "type": "number", "minimum": 0 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "ROYALTY_SETTLED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "royalty_statement" },
+          "payload": {
+            "type": "object",
+            "required": ["statement_id", "period_start", "period_end", "settled_at", "lines"],
+            "properties": {
+              "statement_id": { "type": "string", "minLength": 1 },
+              "period_start": { "type": "string", "format": "date" },
+              "period_end": { "type": "string", "format": "date" },
+              "settled_at": { "type": "string", "format": "date-time" },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["license_id", "payee_candidate_id", "amount"],
+                  "properties": {
+                    "license_id": { "type": "string" },
+                    "payee_candidate_id": { "type": "string" },
+                    "amount": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SKU_DELISTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "description": "下架事件须可反查触发原因（撤权/授权收窄/争议/换料/展期结束）、批准人与库存处置方式。",
+            "required": ["sku", "channels", "reason_code", "trigger_event_id", "inventory_disposition", "approver", "delisted_at"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" }, "minItems": 1 },
+              "reason_code": { "type": "string", "enum": ["RIGHT_WITHDRAWN", "LICENSE_NARROWED", "DISPUTE_OPENED", "MATERIAL_CHANGED", "EXHIBITION_ENDED", "MANUAL"] },
+              "trigger_event_id": { "type": "string", "minLength": 1 },
+              "inventory_disposition": { "type": "string", "enum": ["SELL_THROUGH", "HOLD", "RETURN_SUPPLIER", "DESTROY"] },
+              "sell_through_until": { "type": "string", "format": "date" },
+              "approver": { "type": "string", "minLength": 1 },
+              "delisted_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SKU_RELISTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "product_sku" },
+          "payload": {
+            "type": "object",
+            "required": ["sku", "channels", "reason", "approver", "relisted_at"],
+            "properties": {
+              "sku": { "type": "string", "minLength": 1 },
+              "channels": { "type": "array", "items": { "$ref": "#/$defs/salesChannel" }, "minItems": 1 },
+              "reason": { "type": "string", "minLength": 1 },
+              "approver": { "type": "string", "minLength": 1 },
+              "relisted_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "dateWindow": {
+      "type": "object",
+      "required": ["start_date", "end_date"],
+      "properties": {
+        "start_date": { "type": "string", "format": "date" },
+        "end_date": { "type": "string", "format": "date" }
+      }
+    },
+    "useClass": { "type": "string", "enum": ["COMMERCIAL", "NONPROFIT_PROMO"], "description": "商业售卖与公益宣传互斥，不得混用同一设计与授权" },
+    "salesChannel": { "type": "string", "enum": ["MUSEUM_SHOP", "ONLINE_MALL", "POPUP_STORE", "WHOLESALE", "PRESS_KIT"] },
+    "copyrightRight": { "type": "string", "enum": ["REPRODUCTION", "ADAPTATION", "DISTRIBUTION", "INFORMATION_NETWORK"] }
+  }
 }

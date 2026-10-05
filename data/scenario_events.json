@@ -1,0 +1,2017 @@
+[
+  {
+    "event_id": "ev-ex-001",
+    "event_type": "EXHIBITION_SCHEDULED",
+    "aggregate_type": "exhibition",
+    "aggregate_id": "EX-2026-LINE",
+    "occurred_at": "2026-09-01T10:00:00+08:00",
+    "version": 1,
+    "summary": "特展《线描之间——二十世纪纸上特展》定档 2026-11-01 至 2027-01-31",
+    "payload": {
+      "exhibition_id": "EX-2026-LINE",
+      "title": "线描之间——二十世纪纸上特展",
+      "start_date": "2026-11-01",
+      "end_date": "2027-01-31",
+      "hall": "三楼临展厅"
+    }
+  },
+  {
+    "event_id": "ev-ex-002",
+    "event_type": "EXHIBITION_RESCHEDULED",
+    "aggregate_type": "exhibition",
+    "aggregate_id": "EX-2026-LINE",
+    "occurred_at": "2026-09-12T09:00:00+08:00",
+    "version": 2,
+    "summary": "特展改期：展品借展协调，开幕推迟两周、展期顺延",
+    "payload": {
+      "previous": {
+        "start_date": "2026-11-01",
+        "end_date": "2027-01-31"
+      },
+      "current": {
+        "start_date": "2026-11-15",
+        "end_date": "2027-02-28"
+      },
+      "reason": "展品借展协调，开幕推迟两周、展期顺延"
+    }
+  },
+  {
+    "event_id": "ev-aw001-001",
+    "event_type": "ARTWORK_ACQUIRED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-09-05T10:00:00+08:00",
+    "version": 1,
+    "summary": "作品《春山线稿》入藏登记（著作权状态：ESTATE_HELD）",
+    "payload": {
+      "artwork_id": "AW-001",
+      "title": "春山线稿",
+      "acquisition_date": "2019-06-01",
+      "copyright_status": "ESTATE_HELD",
+      "artist_display": "吴隐之",
+      "acquisition_mode": "DONATION"
+    }
+  },
+  {
+    "event_id": "ev-aw002-001",
+    "event_type": "ARTWORK_ACQUIRED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-002",
+    "occurred_at": "2026-09-05T10:05:00+08:00",
+    "version": 1,
+    "summary": "作品《双姝合作稿》入藏登记（著作权状态：JOINTLY_OWNED）",
+    "payload": {
+      "artwork_id": "AW-002",
+      "title": "双姝合作稿",
+      "acquisition_date": "2021-03-01",
+      "copyright_status": "JOINTLY_OWNED",
+      "artist_display": "林述、周白",
+      "acquisition_mode": "COMMISSION"
+    }
+  },
+  {
+    "event_id": "ev-aw003-001",
+    "event_type": "ARTWORK_ACQUIRED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-003",
+    "occurred_at": "2026-09-05T10:10:00+08:00",
+    "version": 1,
+    "summary": "作品《馆藏肖像》入藏登记（著作权状态：TRANSFERRED_WITH_DEED）",
+    "payload": {
+      "artwork_id": "AW-003",
+      "title": "馆藏肖像",
+      "acquisition_date": "2018-01-10",
+      "copyright_status": "TRANSFERRED_WITH_DEED",
+      "artist_display": "陈岱",
+      "acquisition_mode": "PURCHASE",
+      "copyright_deed_ref": "DEED-2018-014"
+    }
+  },
+  {
+    "event_id": "ev-aw004-001",
+    "event_type": "ARTWORK_ACQUIRED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-004",
+    "occurred_at": "2026-09-05T10:15:00+08:00",
+    "version": 1,
+    "summary": "作品《无题宣传稿》入藏登记（著作权状态：RETAINED_BY_ARTIST）",
+    "payload": {
+      "artwork_id": "AW-004",
+      "title": "无题宣传稿",
+      "acquisition_date": "2025-08-01",
+      "copyright_status": "RETAINED_BY_ARTIST",
+      "artist_display": "何未",
+      "acquisition_mode": "COLLECTION"
+    }
+  },
+  {
+    "event_id": "ev-cl-wuson",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-09-08T11:00:00+08:00",
+    "version": 2,
+    "summary": "登记权属候选：吴家长子 主张 REPRODUCTION,ADAPTATION,DISTRIBUTION,INFORMATION_NETWORK",
+    "payload": {
+      "artwork_id": "AW-001",
+      "candidate_id": "C-WU-SON",
+      "claimant": "吴家长子",
+      "relationship": "HEIR",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "evidence_refs": [
+        "NOTARY-2026-2201",
+        "HOUSEHOLD-PROOF"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-cl-pub",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-09-09T11:00:00+08:00",
+    "version": 3,
+    "summary": "登记权属候选：某某出版社 主张 REPRODUCTION,DISTRIBUTION",
+    "payload": {
+      "artwork_id": "AW-001",
+      "candidate_id": "C-PUBLISHER-X",
+      "claimant": "某某出版社",
+      "relationship": "ASSIGNEE",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "DISTRIBUTION"
+      ],
+      "evidence_refs": [
+        "CONTRACT-1998-ANTHOLOGY"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-cl-lin",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-002",
+    "occurred_at": "2026-09-10T09:30:00+08:00",
+    "version": 2,
+    "summary": "登记权属候选：林述 主张 REPRODUCTION,ADAPTATION,DISTRIBUTION,INFORMATION_NETWORK",
+    "payload": {
+      "artwork_id": "AW-002",
+      "candidate_id": "C-LIN",
+      "claimant": "林述",
+      "relationship": "JOINT_ARTIST",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "evidence_refs": [
+        "ID-LIN",
+        "COMMISSION-CONTRACT-2021"
+      ],
+      "share_pct": 50
+    }
+  },
+  {
+    "event_id": "ev-cl-zhou",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-002",
+    "occurred_at": "2026-09-10T09:35:00+08:00",
+    "version": 3,
+    "summary": "登记权属候选：周白 主张 REPRODUCTION,ADAPTATION,DISTRIBUTION,INFORMATION_NETWORK",
+    "payload": {
+      "artwork_id": "AW-002",
+      "candidate_id": "C-ZHOU",
+      "claimant": "周白",
+      "relationship": "JOINT_ARTIST",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "evidence_refs": [
+        "ID-ZHOU"
+      ],
+      "share_pct": 50
+    }
+  },
+  {
+    "event_id": "ev-cl-museum",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-003",
+    "occurred_at": "2026-09-10T10:00:00+08:00",
+    "version": 2,
+    "summary": "登记权属候选：浦东美术馆资产管理部 主张 REPRODUCTION,ADAPTATION,DISTRIBUTION,INFORMATION_NETWORK",
+    "payload": {
+      "artwork_id": "AW-003",
+      "candidate_id": "C-MUSEUM-RIGHTS",
+      "claimant": "浦东美术馆资产管理部",
+      "relationship": "ASSIGNEE",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "evidence_refs": [
+        "DEED-2018-014"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-cl-he",
+    "event_type": "RIGHT_CLAIMED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-004",
+    "occurred_at": "2026-09-10T10:30:00+08:00",
+    "version": 2,
+    "summary": "登记权属候选：何未 主张 REPRODUCTION,DISTRIBUTION,INFORMATION_NETWORK",
+    "payload": {
+      "artwork_id": "AW-004",
+      "candidate_id": "C-HEWEI",
+      "claimant": "何未",
+      "relationship": "ARTIST",
+      "claimed_rights": [
+        "REPRODUCTION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "evidence_refs": [
+        "ID-HEWEI",
+        "ARTIST-LETTER-2026"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-vf-wuson",
+    "event_type": "RIGHT_CLAIM_VERIFIED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-09-15T14:00:00+08:00",
+    "version": 4,
+    "summary": "权属候选 C-WU-SON（吴家长子）经 法务-赵敏 核验通过",
+    "payload": {
+      "candidate_id": "C-WU-SON",
+      "verifier": "法务-赵敏",
+      "verified_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "basis": "继承公证书 NOTARY-2026-2201 权属链条完整"
+    }
+  },
+  {
+    "event_id": "ev-rj-pub",
+    "event_type": "RIGHT_CLAIM_REJECTED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-09-25T14:00:00+08:00",
+    "version": 5,
+    "summary": "权属候选 C-PUBLISHER-X 核验驳回：1998 年合同仅覆盖文集内页印制，未约定衍生品与信息网络传播",
+    "payload": {
+      "candidate_id": "C-PUBLISHER-X",
+      "verifier": "法务-赵敏",
+      "reason": "1998 年合同仅覆盖文集内页印制，未约定衍生品与信息网络传播"
+    }
+  },
+  {
+    "event_id": "ev-vf-lin",
+    "event_type": "RIGHT_CLAIM_VERIFIED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-002",
+    "occurred_at": "2026-09-16T14:00:00+08:00",
+    "version": 4,
+    "summary": "权属候选 C-LIN（林述）经 法务-赵敏 核验通过",
+    "payload": {
+      "candidate_id": "C-LIN",
+      "verifier": "法务-赵敏",
+      "verified_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "basis": "委托创作合同与身份证明一致",
+      "share_pct": 50
+    }
+  },
+  {
+    "event_id": "ev-vf-zhou",
+    "event_type": "RIGHT_CLAIM_VERIFIED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-002",
+    "occurred_at": "2026-10-20T16:00:00+08:00",
+    "version": 5,
+    "summary": "权属候选 C-ZHOU（周白）经 法务-赵敏 核验通过",
+    "payload": {
+      "candidate_id": "C-ZHOU",
+      "verifier": "法务-赵敏",
+      "verified_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "basis": "本人到场补充身份证明，共同创作人身份确认",
+      "share_pct": 50
+    }
+  },
+  {
+    "event_id": "ev-vf-museum",
+    "event_type": "RIGHT_CLAIM_VERIFIED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-003",
+    "occurred_at": "2026-09-16T15:00:00+08:00",
+    "version": 3,
+    "summary": "权属候选 C-MUSEUM-RIGHTS（浦东美术馆资产管理部）经 法务-赵敏 核验通过",
+    "payload": {
+      "candidate_id": "C-MUSEUM-RIGHTS",
+      "verifier": "法务-赵敏",
+      "verified_rights": [
+        "REPRODUCTION",
+        "ADAPTATION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "basis": "著作权转让契书 DEED-2018-014 已归档"
+    }
+  },
+  {
+    "event_id": "ev-vf-he",
+    "event_type": "RIGHT_CLAIM_VERIFIED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-004",
+    "occurred_at": "2026-09-16T15:30:00+08:00",
+    "version": 3,
+    "summary": "权属候选 C-HEWEI（何未）经 法务-赵敏 核验通过",
+    "payload": {
+      "candidate_id": "C-HEWEI",
+      "verifier": "法务-赵敏",
+      "verified_rights": [
+        "REPRODUCTION",
+        "DISTRIBUTION",
+        "INFORMATION_NETWORK"
+      ],
+      "basis": "艺术家本人书面声明"
+    }
+  },
+  {
+    "event_id": "ev-lic-aw001",
+    "event_type": "LICENSE_GRANTED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW001-ESTATE",
+    "occurred_at": "2026-09-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "授权 L-AW001-ESTATE 生效（COMMERCIAL，1 件作品）",
+    "payload": {
+      "license_id": "L-AW001-ESTATE",
+      "artwork_ids": [
+        "AW-001"
+      ],
+      "licensor_candidate_id": "C-WU-SON",
+      "rights": {
+        "reproduction": true,
+        "adaptation": "MODIFY"
+      },
+      "use_class": "COMMERCIAL",
+      "territories": [
+        "CN"
+      ],
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "term": {
+        "start_date": "2026-11-01",
+        "end_date": "2027-03-31"
+      },
+      "term_basis": "EXHIBITION_WINDOW",
+      "max_units": 5000,
+      "sell_through_days": 15,
+      "royalty": {
+        "rate": 0.08,
+        "basis": "PERCENT_OF_REVENUE"
+      },
+      "exhibition_id": "EX-2026-LINE"
+    }
+  },
+  {
+    "event_id": "ev-lic-lin",
+    "event_type": "LICENSE_GRANTED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW002-LIN",
+    "occurred_at": "2026-09-22T10:00:00+08:00",
+    "version": 1,
+    "summary": "授权 L-AW002-LIN 生效（COMMERCIAL，1 件作品）",
+    "payload": {
+      "license_id": "L-AW002-LIN",
+      "artwork_ids": [
+        "AW-002"
+      ],
+      "licensor_candidate_id": "C-LIN",
+      "rights": {
+        "reproduction": true,
+        "adaptation": "MODIFY"
+      },
+      "use_class": "COMMERCIAL",
+      "territories": [
+        "CN"
+      ],
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "term": {
+        "start_date": "2026-11-01",
+        "end_date": "2027-03-31"
+      },
+      "term_basis": "EXHIBITION_WINDOW",
+      "max_units": 5000,
+      "sell_through_days": 15,
+      "royalty": {
+        "rate": 0.06,
+        "basis": "PERCENT_OF_REVENUE"
+      },
+      "exhibition_id": "EX-2026-LINE"
+    }
+  },
+  {
+    "event_id": "ev-lic-zhou",
+    "event_type": "LICENSE_GRANTED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW002-ZHOU",
+    "occurred_at": "2026-10-21T10:00:00+08:00",
+    "version": 1,
+    "summary": "授权 L-AW002-ZHOU 生效（COMMERCIAL，1 件作品）",
+    "payload": {
+      "license_id": "L-AW002-ZHOU",
+      "artwork_ids": [
+        "AW-002"
+      ],
+      "licensor_candidate_id": "C-ZHOU",
+      "rights": {
+        "reproduction": true,
+        "adaptation": "MODIFY"
+      },
+      "use_class": "COMMERCIAL",
+      "territories": [
+        "CN"
+      ],
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "term": {
+        "start_date": "2026-11-01",
+        "end_date": "2027-03-31"
+      },
+      "term_basis": "EXHIBITION_WINDOW",
+      "max_units": 5000,
+      "sell_through_days": 15,
+      "royalty": {
+        "rate": 0.06,
+        "basis": "PERCENT_OF_REVENUE"
+      },
+      "exhibition_id": "EX-2026-LINE"
+    }
+  },
+  {
+    "event_id": "ev-lic-aw003",
+    "event_type": "LICENSE_GRANTED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW003-MUSEUM",
+    "occurred_at": "2026-09-23T10:00:00+08:00",
+    "version": 1,
+    "summary": "授权 L-AW003-MUSEUM 生效（COMMERCIAL，1 件作品）",
+    "payload": {
+      "license_id": "L-AW003-MUSEUM",
+      "artwork_ids": [
+        "AW-003"
+      ],
+      "licensor_candidate_id": "C-MUSEUM-RIGHTS",
+      "rights": {
+        "reproduction": true,
+        "adaptation": "DERIVATIVE_FULL"
+      },
+      "use_class": "COMMERCIAL",
+      "territories": [
+        "CN"
+      ],
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "term": {
+        "start_date": "2026-11-15",
+        "end_date": "2027-03-31"
+      },
+      "term_basis": "EXPLICIT",
+      "max_units": 3000,
+      "sell_through_days": 15,
+      "royalty": {
+        "rate": 0.1,
+        "basis": "PERCENT_OF_REVENUE"
+      }
+    }
+  },
+  {
+    "event_id": "ev-lic-aw004-np",
+    "event_type": "LICENSE_GRANTED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW004-NONPROFIT",
+    "occurred_at": "2026-09-24T10:00:00+08:00",
+    "version": 1,
+    "summary": "授权 L-AW004-NONPROFIT 生效（NONPROFIT_PROMO，1 件作品）",
+    "payload": {
+      "license_id": "L-AW004-NONPROFIT",
+      "artwork_ids": [
+        "AW-004"
+      ],
+      "licensor_candidate_id": "C-HEWEI",
+      "rights": {
+        "reproduction": true,
+        "adaptation": "NONE"
+      },
+      "use_class": "NONPROFIT_PROMO",
+      "territories": [
+        "CN"
+      ],
+      "channels": [
+        "PRESS_KIT"
+      ],
+      "term": {
+        "start_date": "2026-11-01",
+        "end_date": "2027-03-31"
+      },
+      "term_basis": "EXHIBITION_WINDOW",
+      "max_units": null,
+      "sell_through_days": 0,
+      "royalty": {
+        "rate": 0,
+        "basis": "LUMP_SUM"
+      },
+      "exhibition_id": "EX-2026-LINE"
+    }
+  },
+  {
+    "event_id": "ev-dg-mug",
+    "event_type": "DESIGN_SUBMITTED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-MUG-01",
+    "occurred_at": "2026-09-28T10:00:00+08:00",
+    "version": 1,
+    "summary": "设计提案 D-MUG-01 提交（承制设计公司-拓物）",
+    "payload": {
+      "design_id": "D-MUG-01",
+      "artwork_ids": [
+        "AW-001",
+        "AW-002"
+      ],
+      "use_class": "COMMERCIAL",
+      "designer": "承制设计公司-拓物",
+      "adaptation_level": "STYLIZED_REFERENCE",
+      "spec_ref": "SPEC-D-MUG-01-v3"
+    }
+  },
+  {
+    "event_id": "ev-dg-scarf",
+    "event_type": "DESIGN_SUBMITTED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-SCARF-02",
+    "occurred_at": "2026-09-28T10:10:00+08:00",
+    "version": 1,
+    "summary": "设计提案 D-SCARF-02 提交（承制设计公司-拓物）",
+    "payload": {
+      "design_id": "D-SCARF-02",
+      "artwork_ids": [
+        "AW-003"
+      ],
+      "use_class": "COMMERCIAL",
+      "designer": "承制设计公司-拓物",
+      "adaptation_level": "MODIFY",
+      "spec_ref": "SPEC-D-SCARF-02-v1"
+    }
+  },
+  {
+    "event_id": "ev-dg-poster",
+    "event_type": "DESIGN_SUBMITTED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-POSTER-NP",
+    "occurred_at": "2026-09-28T10:20:00+08:00",
+    "version": 1,
+    "summary": "设计提案 D-POSTER-NP 提交（馆方视觉组）",
+    "payload": {
+      "design_id": "D-POSTER-NP",
+      "artwork_ids": [
+        "AW-004"
+      ],
+      "use_class": "NONPROFIT_PROMO",
+      "designer": "馆方视觉组",
+      "adaptation_level": "NONE",
+      "spec_ref": "SPEC-D-POSTER-NP-v1"
+    }
+  },
+  {
+    "event_id": "ev-dg-badge",
+    "event_type": "DESIGN_SUBMITTED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-BADGE-X",
+    "occurred_at": "2026-09-29T10:00:00+08:00",
+    "version": 1,
+    "summary": "设计提案 D-BADGE-X 提交（外部设计公司-潮玩社）",
+    "payload": {
+      "design_id": "D-BADGE-X",
+      "artwork_ids": [
+        "AW-004"
+      ],
+      "use_class": "COMMERCIAL",
+      "designer": "外部设计公司-潮玩社",
+      "adaptation_level": "STYLIZED_REFERENCE",
+      "spec_ref": "SPEC-D-BADGE-X-v1"
+    }
+  },
+  {
+    "event_id": "ev-dap-mug",
+    "event_type": "DESIGN_APPROVED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-MUG-01",
+    "occurred_at": "2026-09-30T15:00:00+08:00",
+    "version": 2,
+    "summary": "设计提案 D-MUG-01 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-09-30T15:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-dap-scarf",
+    "event_type": "DESIGN_APPROVED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-SCARF-02",
+    "occurred_at": "2026-09-30T15:05:00+08:00",
+    "version": 2,
+    "summary": "设计提案 D-SCARF-02 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-09-30T15:05:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-dap-poster",
+    "event_type": "DESIGN_APPROVED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-POSTER-NP",
+    "occurred_at": "2026-09-30T15:10:00+08:00",
+    "version": 2,
+    "summary": "设计提案 D-POSTER-NP 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-09-30T15:10:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-dap-badge",
+    "event_type": "DESIGN_APPROVED",
+    "aggregate_type": "design_proposal",
+    "aggregate_id": "D-BADGE-X",
+    "occurred_at": "2026-09-30T15:15:00+08:00",
+    "version": 2,
+    "summary": "设计提案 D-BADGE-X 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-09-30T15:15:00+08:00",
+      "notes": "设计本身通过，但能否商用取决于授权"
+    }
+  },
+  {
+    "event_id": "ev-sp-mug-r1",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-MUG-R1",
+    "occurred_at": "2026-10-02T09:00:00+08:00",
+    "version": 1,
+    "summary": "设计 D-MUG-01 第 1 轮打样送检",
+    "payload": {
+      "sample_id": "S-MUG-R1",
+      "design_id": "D-MUG-01",
+      "round_no": 1,
+      "supplier": "供应商-德瓷",
+      "material_spec_ref": "MAT-CERAMIC-A",
+      "submitted_at": "2026-10-02T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-mug-r1-no",
+    "event_type": "SAMPLE_REJECTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-MUG-R1",
+    "occurred_at": "2026-10-05T17:00:00+08:00",
+    "version": 2,
+    "summary": "样品 S-MUG-R1 驳回：线稿套色偏移，超出艺术家家属确认样",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "reason": "线稿套色偏移，超出艺术家家属确认样"
+    }
+  },
+  {
+    "event_id": "ev-sp-mug-r2",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-MUG-R2",
+    "occurred_at": "2026-10-10T09:00:00+08:00",
+    "version": 1,
+    "summary": "设计 D-MUG-01 第 2 轮打样送检",
+    "payload": {
+      "sample_id": "S-MUG-R2",
+      "design_id": "D-MUG-01",
+      "round_no": 2,
+      "supplier": "供应商-德瓷",
+      "material_spec_ref": "MAT-CERAMIC-A",
+      "submitted_at": "2026-10-10T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-scarf-r1",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-SCARF-R1",
+    "occurred_at": "2026-10-03T09:00:00+08:00",
+    "version": 1,
+    "summary": "设计 D-SCARF-02 第 1 轮打样送检",
+    "payload": {
+      "sample_id": "S-SCARF-R1",
+      "design_id": "D-SCARF-02",
+      "round_no": 1,
+      "supplier": "供应商-锦绣",
+      "material_spec_ref": "MAT-SILK-12",
+      "submitted_at": "2026-10-03T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-poster-r1",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-POSTER-R1",
+    "occurred_at": "2026-10-03T09:30:00+08:00",
+    "version": 1,
+    "summary": "设计 D-POSTER-NP 第 1 轮打样送检",
+    "payload": {
+      "sample_id": "S-POSTER-R1",
+      "design_id": "D-POSTER-NP",
+      "round_no": 1,
+      "supplier": "供应商-印务一厂",
+      "material_spec_ref": "MAT-PAPER-200",
+      "submitted_at": "2026-10-03T09:30:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-mug-r2-ok",
+    "event_type": "SAMPLE_APPROVED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-MUG-R2",
+    "occurred_at": "2026-10-12T17:00:00+08:00",
+    "version": 2,
+    "summary": "样品 S-MUG-R2 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-10-12T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-scarf-r1-ok",
+    "event_type": "SAMPLE_APPROVED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-SCARF-R1",
+    "occurred_at": "2026-10-06T17:00:00+08:00",
+    "version": 2,
+    "summary": "样品 S-SCARF-R1 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-10-06T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-poster-r1-ok",
+    "event_type": "SAMPLE_APPROVED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-POSTER-R1",
+    "occurred_at": "2026-10-06T17:30:00+08:00",
+    "version": 2,
+    "summary": "样品 S-POSTER-R1 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-10-06T17:30:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-badge-r1",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-BADGE-R1",
+    "occurred_at": "2026-10-04T09:00:00+08:00",
+    "version": 1,
+    "summary": "设计 D-BADGE-X 第 1 轮打样送检",
+    "payload": {
+      "sample_id": "S-BADGE-R1",
+      "design_id": "D-BADGE-X",
+      "round_no": 1,
+      "supplier": "供应商-鑫泰",
+      "material_spec_ref": "MAT-METAL-03",
+      "submitted_at": "2026-10-04T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-badge-r1-ok",
+    "event_type": "SAMPLE_APPROVED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-BADGE-R1",
+    "occurred_at": "2026-10-07T10:00:00+08:00",
+    "version": 2,
+    "summary": "样品 S-BADGE-R1 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-10-07T10:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sku-mug",
+    "event_type": "SKU_REGISTERED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2026-10-08T09:00:00+08:00",
+    "version": 1,
+    "summary": "SKU SKU-MUG-01 登记（D-MUG-01）",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "design_id": "D-MUG-01",
+      "artwork_ids": [
+        "AW-001",
+        "AW-002"
+      ],
+      "use_class": "COMMERCIAL",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL"
+      ],
+      "unit_price": 89.0,
+      "registered_at": "2026-10-08T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sku-scarf",
+    "event_type": "SKU_REGISTERED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2026-10-08T09:05:00+08:00",
+    "version": 1,
+    "summary": "SKU SKU-SCARF-02 登记（D-SCARF-02）",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "design_id": "D-SCARF-02",
+      "artwork_ids": [
+        "AW-003"
+      ],
+      "use_class": "COMMERCIAL",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "unit_price": 199.0,
+      "registered_at": "2026-10-08T09:05:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sku-poster",
+    "event_type": "SKU_REGISTERED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-POSTER-NP",
+    "occurred_at": "2026-10-08T09:10:00+08:00",
+    "version": 1,
+    "summary": "SKU SKU-POSTER-NP 登记（D-POSTER-NP）",
+    "payload": {
+      "sku": "SKU-POSTER-NP",
+      "design_id": "D-POSTER-NP",
+      "artwork_ids": [
+        "AW-004"
+      ],
+      "use_class": "NONPROFIT_PROMO",
+      "channels": [
+        "PRESS_KIT"
+      ],
+      "unit_price": 0.0,
+      "registered_at": "2026-10-08T09:10:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sku-badge",
+    "event_type": "SKU_REGISTERED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-BADGE-X",
+    "occurred_at": "2026-10-08T09:15:00+08:00",
+    "version": 1,
+    "summary": "SKU SKU-BADGE-X 登记（D-BADGE-X）",
+    "payload": {
+      "sku": "SKU-BADGE-X",
+      "design_id": "D-BADGE-X",
+      "artwork_ids": [
+        "AW-004"
+      ],
+      "use_class": "COMMERCIAL",
+      "channels": [
+        "MUSEUM_SHOP"
+      ],
+      "unit_price": 39.0,
+      "registered_at": "2026-10-08T09:15:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-clr-mug-no1",
+    "event_type": "CLEARANCE_REJECTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2026-10-08T18:00:00+08:00",
+    "version": 2,
+    "summary": "SKU SKU-MUG-01 开售审批驳回（1 项原因）",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "reviewer": "法务-赵敏",
+      "rejected_at": "2026-10-08T18:00:00+08:00",
+      "reasons": [
+        "最新打样批次（第 1 轮）状态为 REJECTED"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-clr-badge-no",
+    "event_type": "CLEARANCE_REJECTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-BADGE-X",
+    "occurred_at": "2026-10-09T10:00:00+08:00",
+    "version": 2,
+    "summary": "SKU SKU-BADGE-X 开售审批驳回（2 项原因）",
+    "payload": {
+      "sku": "SKU-BADGE-X",
+      "reviewer": "法务-赵敏",
+      "rejected_at": "2026-10-09T10:00:00+08:00",
+      "reasons": [
+        "作品 AW-004 缺少覆盖全部渠道的有效授权交集",
+        "没有任何渠道同时满足许可交集、期限与用途要求"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-clr-mug-ok",
+    "event_type": "CLEARANCE_APPROVED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2026-10-22T10:00:00+08:00",
+    "version": 3,
+    "summary": "SKU SKU-MUG-01 开售放行，渠道：MUSEUM_SHOP,ONLINE_MALL",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "approver": "法务-赵敏",
+      "approved_at": "2026-10-22T10:00:00+08:00",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL"
+      ],
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-001",
+          "license_id": "L-AW001-ESTATE",
+          "license_version": 1,
+          "licensor_candidate_id": "C-WU-SON"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-LIN",
+          "license_version": 1,
+          "licensor_candidate_id": "C-LIN"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-ZHOU",
+          "license_version": 1,
+          "licensor_candidate_id": "C-ZHOU"
+        }
+      ],
+      "notes": "双权利人授权与样品均齐备"
+    }
+  },
+  {
+    "event_id": "ev-clr-scarf-ok",
+    "event_type": "CLEARANCE_APPROVED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2026-10-09T11:00:00+08:00",
+    "version": 2,
+    "summary": "SKU SKU-SCARF-02 开售放行，渠道：MUSEUM_SHOP,ONLINE_MALL,POPUP_STORE",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "approver": "法务-赵敏",
+      "approved_at": "2026-10-09T11:00:00+08:00",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL",
+        "POPUP_STORE"
+      ],
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-003",
+          "license_id": "L-AW003-MUSEUM",
+          "license_version": 1,
+          "licensor_candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-clr-poster-ok",
+    "event_type": "CLEARANCE_APPROVED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-POSTER-NP",
+    "occurred_at": "2026-10-09T11:30:00+08:00",
+    "version": 2,
+    "summary": "SKU SKU-POSTER-NP 开售放行，渠道：PRESS_KIT",
+    "payload": {
+      "sku": "SKU-POSTER-NP",
+      "approver": "法务-赵敏",
+      "approved_at": "2026-10-09T11:30:00+08:00",
+      "channels": [
+        "PRESS_KIT"
+      ],
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-004",
+          "license_id": "L-AW004-NONPROFIT",
+          "license_version": 1,
+          "licensor_candidate_id": "C-HEWEI"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-batch-mug-shop",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-MUG-1001",
+    "occurred_at": "2026-11-16T10:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-MUG-1001 排产 800 件（SKU SKU-MUG-01，渠道 MUSEUM_SHOP）",
+    "payload": {
+      "batch_id": "B-MUG-1001",
+      "sku": "SKU-MUG-01",
+      "quantity": 800,
+      "material_ref": "MAT-CERAMIC-A",
+      "released_at": "2026-11-16T10:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-001",
+          "license_id": "L-AW001-ESTATE",
+          "license_version": 1,
+          "licensor_candidate_id": "C-WU-SON"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-LIN",
+          "license_version": 1,
+          "licensor_candidate_id": "C-LIN"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-ZHOU",
+          "license_version": 1,
+          "licensor_candidate_id": "C-ZHOU"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "rate": 0.08,
+          "basis": "PERCENT_OF_REVENUE"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "rate": 0.06,
+          "basis": "PERCENT_OF_REVENUE"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "rate": 0.06,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-batch-mug-online",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-MUG-1002",
+    "occurred_at": "2026-11-17T10:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-MUG-1002 排产 500 件（SKU SKU-MUG-01，渠道 ONLINE_MALL）",
+    "payload": {
+      "batch_id": "B-MUG-1002",
+      "sku": "SKU-MUG-01",
+      "quantity": 500,
+      "material_ref": "MAT-CERAMIC-A",
+      "released_at": "2026-11-17T10:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-001",
+          "license_id": "L-AW001-ESTATE",
+          "license_version": 1,
+          "licensor_candidate_id": "C-WU-SON"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-LIN",
+          "license_version": 1,
+          "licensor_candidate_id": "C-LIN"
+        },
+        {
+          "artwork_id": "AW-002",
+          "license_id": "L-AW002-ZHOU",
+          "license_version": 1,
+          "licensor_candidate_id": "C-ZHOU"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "rate": 0.08,
+          "basis": "PERCENT_OF_REVENUE"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "rate": 0.06,
+          "basis": "PERCENT_OF_REVENUE"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "rate": 0.06,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-batch-scarf-shop",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-SCARF-2001",
+    "occurred_at": "2026-11-16T10:30:00+08:00",
+    "version": 1,
+    "summary": "批次 B-SCARF-2001 排产 1000 件（SKU SKU-SCARF-02，渠道 MUSEUM_SHOP）",
+    "payload": {
+      "batch_id": "B-SCARF-2001",
+      "sku": "SKU-SCARF-02",
+      "quantity": 1000,
+      "material_ref": "MAT-SILK-12",
+      "released_at": "2026-11-16T10:30:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-003",
+          "license_id": "L-AW003-MUSEUM",
+          "license_version": 1,
+          "licensor_candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "rate": 0.1,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-batch-poster",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-POSTER-NP-1",
+    "occurred_at": "2026-11-16T11:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-POSTER-NP-1 排产 300 件（SKU SKU-POSTER-NP，渠道 PRESS_KIT）",
+    "payload": {
+      "batch_id": "B-POSTER-NP-1",
+      "sku": "SKU-POSTER-NP",
+      "quantity": 300,
+      "material_ref": "MAT-PAPER-200",
+      "released_at": "2026-11-16T11:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-004",
+          "license_id": "L-AW004-NONPROFIT",
+          "license_version": 1,
+          "licensor_candidate_id": "C-HEWEI"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW004-NONPROFIT",
+          "rate": 0,
+          "basis": "LUMP_SUM"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-poster-1",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0000",
+    "occurred_at": "2026-11-18T10:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0000：SKU-POSTER-NP ×50（PRESS_KIT）",
+    "payload": {
+      "statement_id": "ST-SALE-0000",
+      "sku": "SKU-POSTER-NP",
+      "batch_id": "B-POSTER-NP-1",
+      "channel": "PRESS_KIT",
+      "quantity": 50,
+      "unit_price": 0.0,
+      "sold_at": "2026-11-18T10:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW004-NONPROFIT",
+          "amount": 0,
+          "candidate_id": "C-HEWEI"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-01",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0001",
+    "occurred_at": "2026-11-20T15:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0001：SKU-MUG-01 ×120（MUSEUM_SHOP）",
+    "payload": {
+      "statement_id": "ST-SALE-0001",
+      "sku": "SKU-MUG-01",
+      "batch_id": "B-MUG-1001",
+      "channel": "MUSEUM_SHOP",
+      "quantity": 120,
+      "unit_price": 89.0,
+      "sold_at": "2026-11-20T15:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "amount": 854.4,
+          "candidate_id": "C-WU-SON"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "amount": 640.8,
+          "candidate_id": "C-LIN"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "amount": 640.8,
+          "candidate_id": "C-ZHOU"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-02",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0002",
+    "occurred_at": "2026-11-22T15:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0002：SKU-MUG-01 ×80（ONLINE_MALL）",
+    "payload": {
+      "statement_id": "ST-SALE-0002",
+      "sku": "SKU-MUG-01",
+      "batch_id": "B-MUG-1002",
+      "channel": "ONLINE_MALL",
+      "quantity": 80,
+      "unit_price": 89.0,
+      "sold_at": "2026-11-22T15:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "amount": 569.6,
+          "candidate_id": "C-WU-SON"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "amount": 427.2,
+          "candidate_id": "C-LIN"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "amount": 427.2,
+          "candidate_id": "C-ZHOU"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-03",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0003",
+    "occurred_at": "2026-11-23T15:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0003：SKU-SCARF-02 ×200（MUSEUM_SHOP）",
+    "payload": {
+      "statement_id": "ST-SALE-0003",
+      "sku": "SKU-SCARF-02",
+      "batch_id": "B-SCARF-2001",
+      "channel": "MUSEUM_SHOP",
+      "quantity": 200,
+      "unit_price": 199.0,
+      "sold_at": "2026-11-23T15:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "amount": 3980.0,
+          "candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-mat-scarf",
+    "event_type": "MATERIAL_SUBSTITUTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2026-12-05T09:00:00+08:00",
+    "version": 3,
+    "summary": "SKU SKU-SCARF-02 供应商换料：MAT-SILK-12 → MAT-SILK-15",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "previous_material_ref": "MAT-SILK-12",
+      "new_material_ref": "MAT-SILK-15",
+      "supplier": "供应商-锦绣",
+      "changed_at": "2026-12-05T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-scarf-r2",
+    "event_type": "SAMPLE_SUBMITTED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-SCARF-R2",
+    "occurred_at": "2026-12-12T09:00:00+08:00",
+    "version": 1,
+    "summary": "设计 D-SCARF-02 第 2 轮打样送检",
+    "payload": {
+      "sample_id": "S-SCARF-R2",
+      "design_id": "D-SCARF-02",
+      "round_no": 2,
+      "supplier": "供应商-锦绣",
+      "material_spec_ref": "MAT-SILK-15",
+      "submitted_at": "2026-12-12T09:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sp-scarf-r2-ok",
+    "event_type": "SAMPLE_APPROVED",
+    "aggregate_type": "sample_round",
+    "aggregate_id": "S-SCARF-R2",
+    "occurred_at": "2026-12-15T17:00:00+08:00",
+    "version": 2,
+    "summary": "样品 S-SCARF-R2 审核通过",
+    "payload": {
+      "reviewer": "策展-李闻",
+      "approved_at": "2026-12-15T17:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-restock-popup",
+    "event_type": "RESTOCK_COMMITTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2026-12-16T10:00:00+08:00",
+    "version": 4,
+    "summary": "SKU SKU-SCARF-02 限量补货承诺 600 件（批次 B-SCARF-2002）",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "quantity": 600,
+      "batch_id": "B-SCARF-2002",
+      "committed_at": "2026-12-16T10:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-batch-scarf-popup",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-SCARF-2002",
+    "occurred_at": "2026-12-18T10:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-SCARF-2002 排产 600 件（SKU SKU-SCARF-02，渠道 POPUP_STORE）",
+    "payload": {
+      "batch_id": "B-SCARF-2002",
+      "sku": "SKU-SCARF-02",
+      "quantity": 600,
+      "material_ref": "MAT-SILK-15",
+      "released_at": "2026-12-18T10:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-003",
+          "license_id": "L-AW003-MUSEUM",
+          "license_version": 1,
+          "licensor_candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "rate": 0.1,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-batch-scarf-online",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-SCARF-2003",
+    "occurred_at": "2026-12-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-SCARF-2003 排产 600 件（SKU SKU-SCARF-02，渠道 ONLINE_MALL）",
+    "payload": {
+      "batch_id": "B-SCARF-2003",
+      "sku": "SKU-SCARF-02",
+      "quantity": 600,
+      "material_ref": "MAT-SILK-15",
+      "released_at": "2026-12-20T10:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-003",
+          "license_id": "L-AW003-MUSEUM",
+          "license_version": 1,
+          "licensor_candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "rate": 0.1,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-restock-shop2",
+    "event_type": "RESTOCK_COMMITTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2026-12-23T10:00:00+08:00",
+    "version": 5,
+    "summary": "SKU SKU-SCARF-02 限量补货承诺 300 件（批次 B-SCARF-2004）",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "quantity": 300,
+      "batch_id": "B-SCARF-2004",
+      "committed_at": "2026-12-23T10:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-batch-scarf-shop2",
+    "event_type": "BATCH_RELEASED",
+    "aggregate_type": "production_batch",
+    "aggregate_id": "B-SCARF-2004",
+    "occurred_at": "2027-01-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "批次 B-SCARF-2004 排产 300 件（SKU SKU-SCARF-02，渠道 MUSEUM_SHOP）",
+    "payload": {
+      "batch_id": "B-SCARF-2004",
+      "sku": "SKU-SCARF-02",
+      "quantity": 300,
+      "material_ref": "MAT-SILK-15",
+      "released_at": "2027-01-02T10:00:00+08:00",
+      "rights_snapshot": [
+        {
+          "artwork_id": "AW-003",
+          "license_id": "L-AW003-MUSEUM",
+          "license_version": 1,
+          "licensor_candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ],
+      "royalty_terms": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "rate": 0.1,
+          "basis": "PERCENT_OF_REVENUE"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-disp-open",
+    "event_type": "RIGHT_DISPUTE_OPENED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-12-10T09:00:00+08:00",
+    "version": 6,
+    "summary": "作品 AW-001 权利争议立案：出版社主张衍生品权属",
+    "payload": {
+      "artwork_id": "AW-001",
+      "dispute_id": "DISP-001",
+      "subject": "出版社主张衍生品权属",
+      "opened_by": "某某出版社-代理律师",
+      "candidate_ids": [
+        "C-PUBLISHER-X",
+        "C-WU-SON"
+      ]
+    }
+  },
+  {
+    "event_id": "ev-disp-open#delist-1",
+    "event_type": "SKU_DELISTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2026-12-10T09:00:00+08:00",
+    "version": 4,
+    "summary": "SKU SKU-MUG-01 在 MUSEUM_SHOP,ONLINE_MALL 下架（DISPUTE_OPENED）",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL"
+      ],
+      "reason_code": "DISPUTE_OPENED",
+      "trigger_event_id": "ev-disp-open",
+      "inventory_disposition": "HOLD",
+      "approver": "法务-赵敏",
+      "delisted_at": "2026-12-10T09:00:00+08:00"
+    },
+    "causation_id": "ev-disp-open"
+  },
+  {
+    "event_id": "ev-disp-resolve",
+    "event_type": "RIGHT_DISPUTE_RESOLVED",
+    "aggregate_type": "artwork_right",
+    "aggregate_id": "AW-001",
+    "occurred_at": "2026-12-28T15:00:00+08:00",
+    "version": 7,
+    "summary": "争议 DISP-001 解决：UNENCUMBERED",
+    "payload": {
+      "dispute_id": "DISP-001",
+      "resolution": "UNENCUMBERED",
+      "resolved_by": "法务-赵敏"
+    }
+  },
+  {
+    "event_id": "ev-relist-mug",
+    "event_type": "SKU_RELISTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2026-12-29T10:00:00+08:00",
+    "version": 5,
+    "summary": "SKU SKU-MUG-01 在 MUSEUM_SHOP,ONLINE_MALL 重新上架：争议解决，长子权属确认无瑕疵",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL"
+      ],
+      "reason": "争议解决，长子权属确认无瑕疵",
+      "approver": "法务-赵敏",
+      "relisted_at": "2026-12-29T10:00:00+08:00"
+    }
+  },
+  {
+    "event_id": "ev-sale-04",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0004",
+    "occurred_at": "2027-01-03T15:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0004：SKU-MUG-01 ×60（MUSEUM_SHOP）",
+    "payload": {
+      "statement_id": "ST-SALE-0004",
+      "sku": "SKU-MUG-01",
+      "batch_id": "B-MUG-1001",
+      "channel": "MUSEUM_SHOP",
+      "quantity": 60,
+      "unit_price": 89.0,
+      "sold_at": "2027-01-03T15:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "amount": 427.2,
+          "candidate_id": "C-WU-SON"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "amount": 320.4,
+          "candidate_id": "C-LIN"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "amount": 320.4,
+          "candidate_id": "C-ZHOU"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-05",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0005",
+    "occurred_at": "2027-01-03T16:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0005：SKU-SCARF-02 ×100（ONLINE_MALL）",
+    "payload": {
+      "statement_id": "ST-SALE-0005",
+      "sku": "SKU-SCARF-02",
+      "batch_id": "B-SCARF-2003",
+      "channel": "ONLINE_MALL",
+      "quantity": 100,
+      "unit_price": 199.0,
+      "sold_at": "2027-01-03T16:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "amount": 1990.0,
+          "candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-06",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0006",
+    "occurred_at": "2027-01-04T16:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0006：SKU-SCARF-02 ×30（POPUP_STORE）",
+    "payload": {
+      "statement_id": "ST-SALE-0006",
+      "sku": "SKU-SCARF-02",
+      "batch_id": "B-SCARF-2002",
+      "channel": "POPUP_STORE",
+      "quantity": 30,
+      "unit_price": 199.0,
+      "sold_at": "2027-01-04T16:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "amount": 597.0,
+          "candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-lic-aw003-narrow",
+    "event_type": "LICENSE_AMENDED",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW003-MUSEUM",
+    "occurred_at": "2027-01-05T00:00:00+08:00",
+    "version": 2,
+    "summary": "授权 L-AW003-MUSEUM 收窄并联动下架受影响渠道",
+    "payload": {
+      "change_type": "NARROW",
+      "effective_at": "2027-01-05T00:00:00+08:00",
+      "changes": {
+        "remove_channels": [
+          "ONLINE_MALL"
+        ]
+      }
+    }
+  },
+  {
+    "event_id": "ev-lic-aw003-narrow#delist-1",
+    "event_type": "SKU_DELISTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-SCARF-02",
+    "occurred_at": "2027-01-05T00:00:00+08:00",
+    "version": 6,
+    "summary": "SKU SKU-SCARF-02 在 ONLINE_MALL 下架（LICENSE_NARROWED）",
+    "payload": {
+      "sku": "SKU-SCARF-02",
+      "channels": [
+        "ONLINE_MALL"
+      ],
+      "reason_code": "LICENSE_NARROWED",
+      "trigger_event_id": "ev-lic-aw003-narrow",
+      "inventory_disposition": "SELL_THROUGH",
+      "approver": "法务-赵敏",
+      "delisted_at": "2027-01-05T00:00:00+08:00",
+      "sell_through_until": "2027-02-15"
+    },
+    "causation_id": "ev-lic-aw003-narrow"
+  },
+  {
+    "event_id": "ev-sale-07",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0007",
+    "occurred_at": "2027-01-08T12:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0007：SKU-SCARF-02 ×50（ONLINE_MALL）",
+    "payload": {
+      "statement_id": "ST-SALE-0007",
+      "sku": "SKU-SCARF-02",
+      "batch_id": "B-SCARF-2003",
+      "channel": "ONLINE_MALL",
+      "quantity": 50,
+      "unit_price": 199.0,
+      "sold_at": "2027-01-08T12:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "amount": 995.0,
+          "candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-lic-zhou-withdraw",
+    "event_type": "LICENSE_WITHDRAWN",
+    "aggregate_type": "license_grant",
+    "aggregate_id": "L-AW002-ZHOU",
+    "occurred_at": "2027-01-10T00:00:00+08:00",
+    "version": 2,
+    "summary": "授权 L-AW002-ZHOU 撤回：艺术家家属对衍生设计风格提出异议，撤回全部商用授权",
+    "payload": {
+      "reason": "艺术家家属对衍生设计风格提出异议，撤回全部商用授权",
+      "effective_at": "2027-01-10T00:00:00+08:00",
+      "sell_through_until": "2027-02-15"
+    }
+  },
+  {
+    "event_id": "ev-lic-zhou-withdraw#delist-1",
+    "event_type": "SKU_DELISTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-MUG-01",
+    "occurred_at": "2027-01-10T00:00:00+08:00",
+    "version": 6,
+    "summary": "SKU SKU-MUG-01 在 MUSEUM_SHOP,ONLINE_MALL 下架（RIGHT_WITHDRAWN）",
+    "payload": {
+      "sku": "SKU-MUG-01",
+      "channels": [
+        "MUSEUM_SHOP",
+        "ONLINE_MALL"
+      ],
+      "reason_code": "RIGHT_WITHDRAWN",
+      "trigger_event_id": "ev-lic-zhou-withdraw",
+      "inventory_disposition": "SELL_THROUGH",
+      "approver": "法务-赵敏",
+      "delisted_at": "2027-01-10T00:00:00+08:00",
+      "sell_through_until": "2027-02-15"
+    },
+    "causation_id": "ev-lic-zhou-withdraw"
+  },
+  {
+    "event_id": "ev-sale-08",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0008",
+    "occurred_at": "2027-01-12T12:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0008：SKU-MUG-01 ×40（ONLINE_MALL）",
+    "payload": {
+      "statement_id": "ST-SALE-0008",
+      "sku": "SKU-MUG-01",
+      "batch_id": "B-MUG-1002",
+      "channel": "ONLINE_MALL",
+      "quantity": 40,
+      "unit_price": 89.0,
+      "sold_at": "2027-01-12T12:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "amount": 284.8,
+          "candidate_id": "C-WU-SON"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "amount": 213.6,
+          "candidate_id": "C-LIN"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "amount": 213.6,
+          "candidate_id": "C-ZHOU"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-09",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0009",
+    "occurred_at": "2027-01-12T13:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0009：SKU-MUG-01 ×30（MUSEUM_SHOP）",
+    "payload": {
+      "statement_id": "ST-SALE-0009",
+      "sku": "SKU-MUG-01",
+      "batch_id": "B-MUG-1001",
+      "channel": "MUSEUM_SHOP",
+      "quantity": 30,
+      "unit_price": 89.0,
+      "sold_at": "2027-01-12T13:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "amount": 213.6,
+          "candidate_id": "C-WU-SON"
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "amount": 160.2,
+          "candidate_id": "C-LIN"
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "amount": 160.2,
+          "candidate_id": "C-ZHOU"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-sale-10",
+    "event_type": "SALE_RECORDED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "ST-SALE-0010",
+    "occurred_at": "2027-01-12T14:00:00+08:00",
+    "version": 1,
+    "summary": "销售记账 ST-SALE-0010：SKU-SCARF-02 ×20（POPUP_STORE）",
+    "payload": {
+      "statement_id": "ST-SALE-0010",
+      "sku": "SKU-SCARF-02",
+      "batch_id": "B-SCARF-2002",
+      "channel": "POPUP_STORE",
+      "quantity": 20,
+      "unit_price": 199.0,
+      "sold_at": "2027-01-12T14:00:00+08:00",
+      "royalty_due": [
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "amount": 398.0,
+          "candidate_id": "C-MUSEUM-RIGHTS"
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "ev-ex-003",
+    "event_type": "EXHIBITION_RESCHEDULED",
+    "aggregate_type": "exhibition",
+    "aggregate_id": "EX-2026-LINE",
+    "occurred_at": "2027-01-25T10:00:00+08:00",
+    "version": 3,
+    "summary": "特展改期：场馆运维安排，特展提前闭幕",
+    "payload": {
+      "previous": {
+        "start_date": "2026-11-15",
+        "end_date": "2027-02-28"
+      },
+      "current": {
+        "start_date": "2026-11-15",
+        "end_date": "2027-01-20"
+      },
+      "reason": "场馆运维安排，特展提前闭幕"
+    }
+  },
+  {
+    "event_id": "ev-ex-003#delist-1",
+    "event_type": "SKU_DELISTED",
+    "aggregate_type": "product_sku",
+    "aggregate_id": "SKU-POSTER-NP",
+    "occurred_at": "2027-01-25T10:00:00+08:00",
+    "version": 3,
+    "summary": "SKU SKU-POSTER-NP 在 PRESS_KIT 下架（EXHIBITION_ENDED）",
+    "payload": {
+      "sku": "SKU-POSTER-NP",
+      "channels": [
+        "PRESS_KIT"
+      ],
+      "reason_code": "EXHIBITION_ENDED",
+      "trigger_event_id": "ev-ex-003",
+      "inventory_disposition": "HOLD",
+      "approver": "运营总监-孙恪",
+      "delisted_at": "2027-01-25T10:00:00+08:00"
+    },
+    "causation_id": "ev-ex-003"
+  },
+  {
+    "event_id": "STMT-2026-11",
+    "event_type": "ROYALTY_SETTLED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "STMT-2026-11",
+    "occurred_at": "2026-12-05T10:00:00+08:00",
+    "version": 1,
+    "summary": "分成结算单 STMT-2026-11 结清",
+    "payload": {
+      "statement_id": "STMT-2026-11",
+      "period_start": "2026-11-01",
+      "period_end": "2026-11-30",
+      "settled_at": "2026-12-05T10:00:00+08:00",
+      "lines": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "payee_candidate_id": "C-WU-SON",
+          "amount": 1424.0
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "payee_candidate_id": "C-LIN",
+          "amount": 1068.0
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "payee_candidate_id": "C-ZHOU",
+          "amount": 1068.0
+        },
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "payee_candidate_id": "C-MUSEUM-RIGHTS",
+          "amount": 3980.0
+        },
+        {
+          "license_id": "L-AW004-NONPROFIT",
+          "payee_candidate_id": "C-HEWEI",
+          "amount": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "event_id": "STMT-2026-12",
+    "event_type": "ROYALTY_SETTLED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "STMT-2026-12",
+    "occurred_at": "2027-01-05T10:00:00+08:00",
+    "version": 1,
+    "summary": "分成结算单 STMT-2026-12 结清",
+    "payload": {
+      "statement_id": "STMT-2026-12",
+      "period_start": "2026-12-01",
+      "period_end": "2026-12-31",
+      "settled_at": "2027-01-05T10:00:00+08:00",
+      "lines": []
+    }
+  },
+  {
+    "event_id": "STMT-2027-01",
+    "event_type": "ROYALTY_SETTLED",
+    "aggregate_type": "royalty_statement",
+    "aggregate_id": "STMT-2027-01",
+    "occurred_at": "2027-03-05T10:00:00+08:00",
+    "version": 1,
+    "summary": "分成结算单 STMT-2027-01 结清",
+    "payload": {
+      "statement_id": "STMT-2027-01",
+      "period_start": "2027-01-01",
+      "period_end": "2027-02-15",
+      "settled_at": "2027-03-05T10:00:00+08:00",
+      "lines": [
+        {
+          "license_id": "L-AW001-ESTATE",
+          "payee_candidate_id": "C-WU-SON",
+          "amount": 925.6
+        },
+        {
+          "license_id": "L-AW002-LIN",
+          "payee_candidate_id": "C-LIN",
+          "amount": 694.2
+        },
+        {
+          "license_id": "L-AW002-ZHOU",
+          "payee_candidate_id": "C-ZHOU",
+          "amount": 694.2
+        },
+        {
+          "license_id": "L-AW003-MUSEUM",
+          "payee_candidate_id": "C-MUSEUM-RIGHTS",
+          "amount": 3980.0
+        }
+      ]
+    }
+  }
+]

@@ -1,5 +1,5 @@
 [project]
 name = "gallery-merch-rights"
-version = "0.1.0"
-description = "领域事件基础校验"
+version = "0.2.0"
+description = "美术馆临展文创授权协作与权利后端：权属核验、许可交集、开售门禁与分成结算"
 requires-python = ">=3.11"
